@@ -3,6 +3,8 @@ defmodule HighScore do
   @type score :: integer()
   @type scores :: %{optional(name()) => score()}
 
+  @default_score 0
+
   @doc """
   Create an score map
   """
@@ -14,7 +16,7 @@ defmodule HighScore do
   """
   @spec add_player(scores(), name()) :: scores()
   @spec add_player(scores(), name(), score()) :: scores()
-  def add_player(scores, name, score \\ 0)
+  def add_player(scores, name, score \\ @default_score)
   def add_player(scores, name, score), do: Map.put(scores, name, score)
 
   @doc """
@@ -27,7 +29,7 @@ defmodule HighScore do
   take an player name and reset his score in the given score list
   """
   @spec reset_score(scores(), name()) :: scores()
-  def reset_score(scores, name), do: Map.put(scores, name, 0)
+  def reset_score(scores, name), do: Map.put(scores, name, @default_score)
 
   @doc """
   take an player name and his new score and sum this whis his actual score in the given score list
