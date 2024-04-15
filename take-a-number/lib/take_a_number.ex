@@ -7,11 +7,8 @@ defmodule TakeANumber do
     spawn(fn -> loop(0) end)
   end
 
-  @doc """
-  recive process messages and send responses
-  """
   @spec loop(integer()) :: no_return()
-  def loop(state) do
+  defp loop(state) do
     receive do
       {:report_state, sender_pid} ->
         send(sender_pid, state) |> loop()
